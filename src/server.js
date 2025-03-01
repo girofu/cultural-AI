@@ -35,9 +35,9 @@ app.get("/api", (req, res) => {
 
 function startServer(port) {
   app
-    .listen(port, () => {
+    .listen(port, "0.0.0.0", () => {
       console.log(`服務器運行在端口 ${port}`);
-      console.log(`網站網址: http://localhost:${port}`);
+      console.log(`如果在本地運行，請訪問: http://localhost:${port}`);
 
       if (process.env.HOST) {
         console.log(`或是訪問: ${process.env.HOST}:${port}`);
@@ -47,6 +47,8 @@ function startServer(port) {
       if (err.code === "EADDRINUSE") {
         console.log(`端口 ${port} 已被占用，嘗試使用端口 ${port + 1}`);
         startServer(port + 1);
+      } else {
+        console.error("服務器啟動錯誤:", err);
       }
     });
 }
