@@ -1,6 +1,6 @@
 services:
   - type: web
-    name: tour-guide-ai
+    name: cultural-ai
     env: node
     plan: free
     buildCommand: npm install

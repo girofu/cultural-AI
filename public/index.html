@@ -3,125 +3,125 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI 在地人 - 智能导览助手</title>
+    <title>AI 在地人 - 智能文化導覽</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
     <div class="app-container">
-        <!-- 导航栏 -->
+        <!-- 導航欄 -->
         <nav class="navbar">
             <div class="logo">
                 <img src="images/logo.png" alt="AI 在地人" id="logo-img">
                 <h1>AI 在地人</h1>
             </div>
             <div class="nav-links">
-                <a href="#" class="active" id="home-link">首页</a>
-                <a href="#" id="history-link">历史记录</a>
-                <a href="#" id="about-link">关于我们</a>
+                <a href="#" class="active" id="home-link">首頁</a>
+                <a href="#" id="history-link">歷史紀錄</a>
+                <a href="#" id="about-link">關於我們</a>
             </div>
         </nav>
 
-        <!-- 主内容区域 -->
+        <!-- 主內容區域 -->
         <main class="main-content">
-            <!-- 欢迎页面 -->
+            <!-- 歡迎頁面 -->
             <section id="welcome-section" class="section active">
                 <div class="welcome-container">
-                    <h2>欢迎使用 AI 在地人</h2>
-                    <p>您的专属智能导览助手，随时随地深入了解您所在的地方</p>
-                    <button id="start-tour-btn" class="primary-btn">开始导览</button>
+                    <h2>歡迎使用 AI 在地人</h2>
+                    <p>您的專屬智能導覽助手，隨時隨地深入了解您所在的地方</p>
+                    <button id="start-tour-btn" class="primary-btn">開始導覽</button>
                 </div>
             </section>
 
-            <!-- 选择导览地点 -->
+            <!-- 選擇導覽地點 -->
             <section id="location-section" class="section">
-                <h2>选择导览地点</h2>
+                <h2>選擇導覽地點</h2>
                 <div class="location-search">
-                    <input type="text" id="location-search" placeholder="搜索地点...">
+                    <input type="text" id="location-search" placeholder="搜索地點...">
                     <button id="search-btn"><i class="fas fa-search"></i></button>
                 </div>
                 <div class="location-list" id="location-list">
-                    <!-- 地点列表将通过JavaScript动态生成 -->
+                    <!-- 地點列表將通過JavaScript動態生成 -->
                 </div>
                 <div class="location-map" id="location-map">
-                    <!-- 地图将通过JavaScript动态生成 -->
+                    <!-- 地圖將通過JavaScript動態生成 -->
                 </div>
-                <button id="use-current-location" class="secondary-btn">使用当前位置</button>
+                <button id="use-current-location" class="secondary-btn">使用當前位置</button>
                 <button id="next-to-style" class="primary-btn">下一步</button>
             </section>
 
-            <!-- 选择导览风格和人物 -->
+            <!-- 選擇導覽風格和人物 -->
             <section id="style-section" class="section">
-                <h2>选择导览风格和人物</h2>
+                <h2>選擇導覽風格和人物</h2>
                 <div class="style-options">
                     <div class="style-card" data-style="historical">
-                        <img src="images/historical.png" alt="历史学者">
-                        <h3>历史学者</h3>
-                        <p>深入了解历史背景和文化意义</p>
+                        <img src="images/historical.png" alt="歷史學者">
+                        <h3>歷史學者</h3>
+                        <p>深入了解歷史背景和文化意義</p>
                     </div>
                     <div class="style-card" data-style="local">
                         <img src="images/local.png" alt="在地人">
                         <h3>在地人</h3>
-                        <p>以当地人的视角分享有趣的故事和秘密</p>
+                        <p>以當地人的視角分享有趣的故事和秘密</p>
                     </div>
                     <div class="style-card" data-style="fun">
-                        <img src="images/fun.png" alt="趣味导游">
-                        <h3>趣味导游</h3>
-                        <p>轻松有趣的方式介绍景点</p>
+                        <img src="images/fun.png" alt="趣味導遊">
+                        <h3>趣味導遊</h3>
+                        <p>輕鬆有趣的方式介紹景點</p>
                     </div>
                 </div>
                 <button id="back-to-location" class="secondary-btn">返回</button>
-                <button id="next-to-chat" class="primary-btn">开始导览</button>
+                <button id="next-to-chat" class="primary-btn">開始導覽</button>
             </section>
 
-            <!-- 导览聊天界面 -->
+            <!-- 導覽聊天界面 -->
             <section id="chat-section" class="section">
                 <div class="chat-header">
                     <button id="back-to-style" class="icon-btn"><i class="fas fa-arrow-left"></i></button>
                     <div class="chat-info">
-                        <h3 id="location-name">导览地点</h3>
-                        <p id="guide-style">导览风格</p>
+                        <h3 id="location-name">導覽地點</h3>
+                        <p id="guide-style">導覽風格</p>
                     </div>
                     <button id="end-tour-btn" class="icon-btn"><i class="fas fa-times"></i></button>
                 </div>
                 <div class="chat-messages" id="chat-messages">
-                    <!-- 聊天消息将通过JavaScript动态生成 -->
+                    <!-- 聊天訊息將通過JavaScript動態生成 -->
                 </div>
                 <div class="chat-input">
                     <button id="voice-input-btn" class="icon-btn"><i class="fas fa-microphone"></i></button>
-                    <input type="text" id="message-input" placeholder="输入您的问题...">
+                    <input type="text" id="message-input" placeholder="輸入您的問題...">
                     <button id="send-message-btn" class="icon-btn"><i class="fas fa-paper-plane"></i></button>
                 </div>
             </section>
 
-            <!-- 导览总结 -->
+            <!-- 導覽總結 -->
             <section id="summary-section" class="section">
-                <h2>导览总结</h2>
+                <h2>導覽總結</h2>
                 <div class="summary-container">
                     <div class="summary-header">
-                        <h3 id="summary-location">导览地点</h3>
-                        <p id="summary-date">日期和时间</p>
+                        <h3 id="summary-location">導覽地點</h3>
+                        <p id="summary-date">日期和時間</p>
                     </div>
                     <div class="summary-content" id="summary-content">
-                        <!-- 总结内容将通过JavaScript动态生成 -->
+                        <!-- 總結內容將通過JavaScript動態生成 -->
                     </div>
                     <div class="summary-actions">
-                        <button id="print-summary-btn" class="action-btn"><i class="fas fa-print"></i> 打印记录</button>
+                        <button id="print-summary-btn" class="action-btn"><i class="fas fa-print"></i> 列印記錄</button>
                         <button id="share-summary-btn" class="action-btn"><i class="fas fa-share-alt"></i> 分享</button>
-                        <button id="save-summary-btn" class="action-btn"><i class="fas fa-save"></i> 保存</button>
+                        <button id="save-summary-btn" class="action-btn"><i class="fas fa-save"></i> 儲存</button>
                     </div>
                 </div>
-                <button id="new-tour-btn" class="primary-btn">开始新导览</button>
+                <button id="new-tour-btn" class="primary-btn">開始新導覽</button>
             </section>
         </main>
 
-        <!-- 底部导航 -->
+        <!-- 底部導航 -->
         <footer class="footer">
-            <p>&copy; 2023 AI 在地人 - 智能导览助手</p>
+            <p>&copy; 2025 AI 在地人 - 智能導覽助手</p>
         </footer>
     </div>
 
-    <!-- 加载脚本 -->
+    <!-- 加載腳本 -->
     <script src="js/app.js"></script>
 </body>
 </html> 

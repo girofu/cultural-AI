@@ -1,4 +1,4 @@
-// 全局变量
+// 全局變量
 let currentSection = "welcome-section";
 let selectedLocation = null;
 let selectedStyle = null;
@@ -11,7 +11,7 @@ let tourSummary = {
   questions: [],
 };
 
-// 语音识别API
+// 語音識別API
 const SpeechRecognition =
   window.SpeechRecognition || window.webkitSpeechRecognition;
 let recognition = null;
@@ -23,27 +23,27 @@ if (SpeechRecognition) {
 
 // DOM元素
 document.addEventListener("DOMContentLoaded", () => {
-  // 导航链接
+  // 導航鏈接
   const homeLink = document.getElementById("home-link");
   const historyLink = document.getElementById("history-link");
   const aboutLink = document.getElementById("about-link");
 
-  // 欢迎页面
+  // 歡迎頁面
   const startTourBtn = document.getElementById("start-tour-btn");
 
-  // 地点选择页面
+  // 地點選擇頁面
   const locationSearchInput = document.getElementById("location-search");
   const searchBtn = document.getElementById("search-btn");
   const locationList = document.getElementById("location-list");
   const useCurrentLocationBtn = document.getElementById("use-current-location");
   const nextToStyleBtn = document.getElementById("next-to-style");
 
-  // 风格选择页面
+  // 風格選擇頁面
   const styleCards = document.querySelectorAll(".style-card");
   const backToLocationBtn = document.getElementById("back-to-location");
   const nextToChatBtn = document.getElementById("next-to-chat");
 
-  // 聊天页面
+  // 聊天頁面
   const backToStyleBtn = document.getElementById("back-to-style");
   const endTourBtn = document.getElementById("end-tour-btn");
   const locationNameEl = document.getElementById("location-name");
@@ -53,7 +53,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const sendMessageBtn = document.getElementById("send-message-btn");
   const voiceInputBtn = document.getElementById("voice-input-btn");
 
-  // 总结页面
+  // 總結頁面
   const summaryLocationEl = document.getElementById("summary-location");
   const summaryDateEl = document.getElementById("summary-date");
   const summaryContentEl = document.getElementById("summary-content");
@@ -62,10 +62,10 @@ document.addEventListener("DOMContentLoaded", () => {
   const saveSummaryBtn = document.getElementById("save-summary-btn");
   const newTourBtn = document.getElementById("new-tour-btn");
 
-  // 初始化页面
+  // 初始化頁面
   initApp();
 
-  // 事件监听器
+  // 事件監聽器
   homeLink.addEventListener("click", (e) => {
     e.preventDefault();
     showSection("welcome-section");
@@ -74,14 +74,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
   historyLink.addEventListener("click", (e) => {
     e.preventDefault();
-    // 这里可以添加历史记录页面的逻辑
-    alert("历史记录功能即将推出");
+    // 這裡可以添加歷史記錄頁面的邏輯
+    alert("歷史記錄功能即將推出");
   });
 
   aboutLink.addEventListener("click", (e) => {
     e.preventDefault();
-    // 这里可以添加关于我们页面的逻辑
-    alert("关于我们功能即将推出");
+    // 這裡可以添加關於我們頁面的邏輯
+    alert("關於我們功能即將推出");
   });
 
   startTourBtn.addEventListener("click", () => {
@@ -106,7 +106,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (selectedLocation) {
       showSection("style-section");
     } else {
-      alert("请先选择一个地点");
+      alert("請先選擇一個地點");
     }
   });
 
@@ -126,7 +126,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (selectedStyle) {
       startTour();
     } else {
-      alert("请先选择一个导览风格");
+      alert("請先選擇一個導覽風格");
     }
   });
 
@@ -172,45 +172,45 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-// 初始化应用
+// 初始化應用
 function initApp() {
-  // 加载示例地点
+  // 加載示例地點
   loadSampleLocations();
 
-  // 初始化地图
+  // 初始化地圖
   initMap();
 }
 
-// 加载示例地点
+// 加載示例地點
 function loadSampleLocations() {
   const sampleLocations = [
     {
       id: 1,
       name: "台北101",
-      description: "台北地标性建筑，曾是世界最高建筑",
-      location: "台北市信义区信义路五段7号",
-      category: "建筑",
+      description: "台北地標性建築，曾是世界最高建築",
+      location: "台北市信義區信義路五段7號",
+      category: "建築",
     },
     {
       id: 2,
-      name: "故宫博物院",
-      description: "收藏大量中国古代艺术品和文物的博物馆",
-      location: "台北市士林区至善路二段221号",
-      category: "博物馆",
+      name: "故宮博物院",
+      description: "收藏大量中國古代藝術品和文物的博物館",
+      location: "台北市士林區至善路二段221號",
+      category: "博物館",
     },
     {
       id: 3,
-      name: "阳明山国家公园",
-      description: "以温泉和火山地质景观闻名的国家公园",
-      location: "台北市北投区竹子湖路1-20号",
-      category: "自然景观",
+      name: "陽明山國家公園",
+      description: "以溫泉和火山地質景觀聞名的國家公園",
+      location: "台北市北投區竹子湖路1-20號",
+      category: "自然景觀",
     },
     {
       id: 4,
       name: "九份老街",
-      description: "保留日据时代建筑风格的山城老街",
-      location: "新北市瑞芳区基山街",
-      category: "历史街区",
+      description: "保留日據時代建築風格的山城老街",
+      location: "新北市瑞芳區基山街",
+      category: "歷史街區",
     },
   ];
 
@@ -239,32 +239,32 @@ function loadSampleLocations() {
   });
 }
 
-// 初始化地图（这里使用占位符，实际应用中可以集成Google Maps或其他地图服务）
+// 初始化地圖（這裡使用佔位符，實際應用中可以集成Google Maps或其他地圖服務）
 function initMap() {
   const mapElement = document.getElementById("location-map");
   mapElement.innerHTML =
-    '<div style="display: flex; justify-content: center; align-items: center; height: 100%; background-color: #f0f0f0;"><p>地图加载中...</p></div>';
+    '<div style="display: flex; justify-content: center; align-items: center; height: 100%; background-color: #f0f0f0;"><p>地圖加載中...</p></div>';
 
-  // 这里可以添加实际地图初始化代码
+  // 這裡可以添加實際地圖初始化代碼
   // 例如：使用Google Maps API
 }
 
-// 搜索地点
+// 搜索地點
 function searchLocations(query) {
   if (!query.trim()) {
-    alert("请输入搜索关键词");
+    alert("請輸入搜索關鍵詞");
     return;
   }
 
-  // 这里应该调用API搜索地点
-  // 为了演示，我们只是过滤示例数据
+  // 這裡應該調用API搜索地點
+  // 為了演示，我們只是過濾示例數據
   const filteredLocations = [
     {
       id: 1,
       name: "台北101",
-      description: "台北地标性建筑，曾是世界最高建筑",
-      location: "台北市信义区信义路五段7号",
-      category: "建筑",
+      description: "台北地標性建築，曾是世界最高建築",
+      location: "台北市信義區信義路五段7號",
+      category: "建築",
     },
   ];
 
@@ -272,7 +272,7 @@ function searchLocations(query) {
   locationList.innerHTML = "";
 
   if (filteredLocations.length === 0) {
-    locationList.innerHTML = "<p>未找到匹配的地点</p>";
+    locationList.innerHTML = "<p>未找到匹配的地點</p>";
     return;
   }
 
@@ -298,21 +298,21 @@ function searchLocations(query) {
   });
 }
 
-// 获取当前位置
+// 獲取當前位置
 function getCurrentLocation() {
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(
       (position) => {
-        // 这里应该调用API根据坐标获取附近的地点
-        // 为了演示，我们只是显示一个示例地点
+        // 這裡應該調用API根據坐標獲取附近的地點
+        // 為了演示，我們只是顯示一個示例地點
         const currentLocation = {
           id: 5,
-          name: "当前位置",
-          description: "根据您的GPS定位",
-          location: `纬度: ${position.coords.latitude.toFixed(
+          name: "當前位置",
+          description: "根據您的GPS定位",
+          location: `緯度: ${position.coords.latitude.toFixed(
             4
-          )}, 经度: ${position.coords.longitude.toFixed(4)}`,
-          category: "当前位置",
+          )}, 經度: ${position.coords.longitude.toFixed(4)}`,
+          category: "當前位置",
         };
 
         selectedLocation = currentLocation;
@@ -331,89 +331,89 @@ function getCurrentLocation() {
         locationList.appendChild(locationItem);
       },
       (error) => {
-        console.error("获取位置失败:", error);
-        alert("无法获取您的位置，请检查位置权限设置");
+        console.error("獲取位置失敗:", error);
+        alert("無法獲取您的位置，請檢查位置權限設置");
       }
     );
   } else {
-    alert("您的浏览器不支持地理定位");
+    alert("您的瀏覽器不支持地理定位");
   }
 }
 
-// 开始导览
+// 開始導覽
 function startTour() {
-  // 设置聊天界面信息
+  // 設置聊天界面信息
   document.getElementById("location-name").textContent = selectedLocation.name;
 
   let styleText = "";
   switch (selectedStyle) {
     case "historical":
-      styleText = "历史学者";
+      styleText = "歷史學者";
       break;
     case "local":
       styleText = "在地人";
       break;
     case "fun":
-      styleText = "趣味导游";
+      styleText = "趣味導遊";
       break;
     default:
-      styleText = "导览助手";
+      styleText = "導覽助手";
   }
 
   document.getElementById("guide-style").textContent = styleText;
 
-  // 清空聊天记录
+  // 清空聊天記錄
   chatHistory = [];
   document.getElementById("chat-messages").innerHTML = "";
 
-  // 显示聊天界面
+  // 顯示聊天界面
   showSection("chat-section");
 
-  // 发送欢迎消息
+  // 發送歡迎消息
   setTimeout(() => {
-    const welcomeMessage = `欢迎来到${selectedLocation.name}！我是您的${styleText}导览助手。有什么想了解的，随时可以问我。`;
+    const welcomeMessage = `歡迎來到${selectedLocation.name}！我是您的${styleText}導覽助手。有什麼想了解的，隨時可以問我。`;
     addAIMessage(welcomeMessage);
 
-    // 保存到聊天历史 - 使用'assistant'角色而不是'ai'
+    // 保存到聊天歷史 - 使用'assistant'角色而不是'ai'
     chatHistory.push({
       role: "assistant",
       content: welcomeMessage,
     });
 
-    // 保存到导览摘要
+    // 保存到導覽摘要
     tourSummary.location = selectedLocation.name;
     tourSummary.style = styleText;
     tourSummary.date = new Date().toLocaleString("zh-TW");
   }, 500);
 }
 
-// 发送消息
+// 發送消息
 function sendMessage() {
   const messageInput = document.getElementById("message-input");
   const message = messageInput.value.trim();
 
   if (!message) return;
 
-  // 添加用户消息到聊天界面
+  // 添加用戶消息到聊天界面
   addUserMessage(message);
 
-  // 保存到聊天历史
+  // 保存到聊天歷史
   chatHistory.push({
     role: "user",
     content: message,
   });
 
-  // 保存到导览摘要的问题列表
+  // 保存到導覽摘要的問題列表
   tourSummary.questions.push(message);
 
-  // 清空输入框
+  // 清空輸入框
   messageInput.value = "";
 
-  // 模拟AI回复
+  // 模擬AI回復
   simulateAIResponse(message);
 }
 
-// 添加用户消息到聊天界面
+// 添加用戶消息到聊天界面
 function addUserMessage(message) {
   const chatMessages = document.getElementById("chat-messages");
   const messageElement = document.createElement("div");
@@ -421,7 +421,7 @@ function addUserMessage(message) {
   messageElement.textContent = message;
   chatMessages.appendChild(messageElement);
 
-  // 滚动到底部
+  // 滾動到底部
   chatMessages.scrollTop = chatMessages.scrollHeight;
 }
 
@@ -458,26 +458,26 @@ function addAIMessage(message) {
 
   chatMessages.appendChild(messageElement);
 
-  // 滚动到底部
+  // 滾動到底部
   chatMessages.scrollTop = chatMessages.scrollHeight;
 
   // 調試信息
   console.log("添加AI消息:", message);
 }
 
-// 模拟AI回复（实际应用中应该调用OpenAI API）
+// 模擬AI回復（實際應用中應該調用OpenAI API）
 function simulateAIResponse(userMessage) {
-  // 显示正在输入指示器
+  // 顯示正在輸入指示器
   const chatMessages = document.getElementById("chat-messages");
   const typingIndicator = document.createElement("div");
   typingIndicator.className = "message ai-message typing";
-  typingIndicator.textContent = "正在输入...";
+  typingIndicator.textContent = "正在輸入...";
   chatMessages.appendChild(typingIndicator);
 
-  // 滚动到底部
+  // 滾動到底部
   chatMessages.scrollTop = chatMessages.scrollHeight;
 
-  // 准备请求数据
+  // 準備請求數據
   const requestData = {
     location: selectedLocation,
     style: selectedStyle,
@@ -488,7 +488,7 @@ function simulateAIResponse(userMessage) {
   // 調試信息
   console.log("發送聊天請求:", requestData);
 
-  // 调用后端API获取OpenAI回复
+  // 調用後端API獲取OpenAI回復
   fetch("/api/chat", {
     method: "POST",
     headers: {
@@ -504,7 +504,7 @@ function simulateAIResponse(userMessage) {
       return response.json();
     })
     .then((data) => {
-      // 移除输入指示器
+      // 移除輸入指示器
       const typingElement = document.querySelector(".typing");
       if (typingElement) {
         chatMessages.removeChild(typingElement);
@@ -513,7 +513,7 @@ function simulateAIResponse(userMessage) {
       // 調試信息
       console.log("解析的API響應:", data);
 
-      // 获取AI回复，確保獲取完整響應
+      // 獲取AI回復，確保獲取完整響應
       let aiResponse = "";
       if (data.response) {
         aiResponse = data.response;
@@ -528,61 +528,61 @@ function simulateAIResponse(userMessage) {
         aiResponse = JSON.stringify(aiResponse);
       }
 
-      // 添加AI回复到聊天界面
+      // 添加AI回復到聊天界面
       addAIMessage(aiResponse);
 
-      // 保存到聊天历史 - 使用'assistant'角色
+      // 保存到聊天歷史 - 使用'assistant'角色
       chatHistory.push({
         role: "assistant",
         content: aiResponse,
       });
 
-      // 如果响应中包含亮点，添加到导览摘要
+      // 如果響應中包含亮點，添加到導覽摘要
       if (data.highlight) {
         tourSummary.highlights.push(data.highlight);
       } else {
-        // 默认添加
-        tourSummary.highlights.push(`了解了关于${userMessage}的信息`);
+        // 默認添加
+        tourSummary.highlights.push(`了解了關於${userMessage}的信息`);
       }
 
-      // 滚动到底部
+      // 滾動到底部
       chatMessages.scrollTop = chatMessages.scrollHeight;
     })
     .catch((error) => {
       console.error("獲取AI回覆出錯:", error);
 
-      // 移除输入指示器
+      // 移除輸入指示器
       const typingElement = document.querySelector(".typing");
       if (typingElement) {
         chatMessages.removeChild(typingElement);
       }
 
-      // 显示错误消息
+      // 顯示錯誤消息
       const errorMessage = `很抱歉，我暫時無法回答您的問題。請稍後再試或嘗試其他問題。錯誤信息: ${error.message}`;
       addAIMessage(errorMessage);
 
-      // 保存到聊天历史
+      // 保存到聊天歷史
       chatHistory.push({
         role: "assistant",
         content: errorMessage,
       });
 
-      // 滚动到底部
+      // 滾動到底部
       chatMessages.scrollTop = chatMessages.scrollHeight;
     });
 }
 
-// 语音输入
+// 語音輸入
 function toggleVoiceInput() {
   const voiceInputBtn = document.getElementById("voice-input-btn");
 
   if (recognition.listening) {
-    // 停止语音识别
+    // 停止語音識別
     recognition.stop();
     voiceInputBtn.innerHTML = '<i class="fas fa-microphone"></i>';
     voiceInputBtn.classList.remove("active");
   } else {
-    // 开始语音识别
+    // 開始語音識別
     recognition.start();
     voiceInputBtn.innerHTML = '<i class="fas fa-microphone-slash"></i>';
     voiceInputBtn.classList.add("active");
@@ -598,36 +598,36 @@ function toggleVoiceInput() {
     };
 
     recognition.onerror = (event) => {
-      console.error("语音识别错误:", event.error);
+      console.error("語音識別錯誤:", event.error);
       voiceInputBtn.innerHTML = '<i class="fas fa-microphone"></i>';
       voiceInputBtn.classList.remove("active");
     };
   }
 }
 
-// 结束导览
+// 結束導覽
 function endTour() {
-  // 生成导览总结
+  // 生成導覽總結
   generateTourSummary();
 
-  // 显示总结页面
+  // 顯示總結頁面
   showSection("summary-section");
 }
 
-// 生成导览总结
+// 生成導覽總結
 function generateTourSummary() {
-  // 设置总结页面信息
+  // 設置總結頁面信息
   document.getElementById("summary-location").textContent =
     tourSummary.location;
   document.getElementById("summary-date").textContent = tourSummary.date;
 
-  // 生成总结内容
+  // 生成總結內容
   const summaryContent = document.getElementById("summary-content");
   summaryContent.innerHTML = "";
 
-  // 添加亮点
+  // 添加亮點
   const highlightsSection = document.createElement("div");
-  highlightsSection.innerHTML = `<h4>导览亮点</h4>`;
+  highlightsSection.innerHTML = `<h4>導覽亮點</h4>`;
 
   if (tourSummary.highlights.length > 0) {
     const uniqueHighlights = [...new Set(tourSummary.highlights)]; // 去重
@@ -641,14 +641,14 @@ function generateTourSummary() {
 
     highlightsSection.appendChild(highlightsList);
   } else {
-    highlightsSection.innerHTML += `<p>没有记录亮点</p>`;
+    highlightsSection.innerHTML += `<p>沒有記錄亮點</p>`;
   }
 
   summaryContent.appendChild(highlightsSection);
 
-  // 添加问答记录
+  // 添加問答記錄
   const questionsSection = document.createElement("div");
-  questionsSection.innerHTML = `<h4>问答记录</h4>`;
+  questionsSection.innerHTML = `<h4>問答記錄</h4>`;
 
   if (tourSummary.questions.length > 0) {
     const questionsList = document.createElement("ul");
@@ -661,44 +661,44 @@ function generateTourSummary() {
 
     questionsSection.appendChild(questionsList);
   } else {
-    questionsSection.innerHTML += `<p>没有记录问题</p>`;
+    questionsSection.innerHTML += `<p>沒有記錄問題</p>`;
   }
 
   summaryContent.appendChild(questionsSection);
 
-  // 添加总结
+  // 添加總結
   const conclusionSection = document.createElement("div");
   conclusionSection.innerHTML = `
-        <h4>导览总结</h4>
-        <p>您在${tourSummary.date}使用${tourSummary.style}风格探索了${tourSummary.location}。</p>
-        <p>希望这次导览为您带来了丰富的体验和知识！</p>
+        <h4>導覽總結</h4>
+        <p>您在${tourSummary.date}使用${tourSummary.style}風格探索了${tourSummary.location}。</p>
+        <p>希望這次導覽為您帶來了豐富的體驗和知識！</p>
     `;
 
   summaryContent.appendChild(conclusionSection);
 }
 
-// 打印导览总结
+// 列印導覽總結
 function printTourSummary() {
-  // 这里应该调用Epson connect API
-  // 为了演示，我们只是显示一个提示
-  alert("正在连接打印机...\n\n打印功能即将推出");
+  // 這裡應該調用Epson connect API
+  // 為了演示，我們只是顯示一個提示
+  alert("正在連接印表機...\n\n列印功能即將推出");
 }
 
-// 分享导览总结
+// 分享導覽總結
 function shareTourSummary() {
-  // 这里应该实现分享功能
-  // 为了演示，我们只是显示一个提示
-  alert("分享功能即将推出");
+  // 這裡應該實現分享功能
+  // 為了演示，我們只是顯示一個提示
+  alert("分享功能即將推出");
 }
 
-// 保存导览总结
+// 保存導覽總結
 function saveTourSummary() {
-  // 这里应该实现保存功能
-  // 为了演示，我们只是显示一个提示
-  alert("导览记录已保存");
+  // 這裡應該實現保存功能
+  // 為了演示，我們只是顯示一個提示
+  alert("導覽記錄已保存");
 }
 
-// 重置应用
+// 重置應用
 function resetApp() {
   selectedLocation = null;
   selectedStyle = null;
@@ -711,38 +711,38 @@ function resetApp() {
     questions: [],
   };
 
-  // 重置地点选择
+  // 重置地點選擇
   document.querySelectorAll(".location-item").forEach((item) => {
     item.classList.remove("selected");
   });
 
-  // 重置风格选择
+  // 重置風格選擇
   document.querySelectorAll(".style-card").forEach((card) => {
     card.classList.remove("selected");
   });
 
-  // 清空聊天记录
+  // 清空聊天記錄
   document.getElementById("chat-messages").innerHTML = "";
 
-  // 清空输入框
+  // 清空輸入框
   document.getElementById("message-input").value = "";
 }
 
-// 显示指定部分
+// 顯示指定部分
 function showSection(sectionId) {
-  // 隐藏所有部分
+  // 隱藏所有部分
   document.querySelectorAll(".section").forEach((section) => {
     section.classList.remove("active");
   });
 
-  // 显示指定部分
+  // 顯示指定部分
   document.getElementById(sectionId).classList.add("active");
 
-  // 更新当前部分
+  // 更新當前部分
   currentSection = sectionId;
 }
 
-// 更新导航链接
+// 更新導航鏈接
 function updateNavLinks(activeLink) {
   document.querySelectorAll(".nav-links a").forEach((link) => {
     link.classList.remove("active");

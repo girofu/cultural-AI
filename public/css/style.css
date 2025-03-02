@@ -1,4 +1,4 @@
-/* 全局样式 */
+/* 全局樣式 */
 :root {
     --primary-color: #4a6fa5;
     --secondary-color: #6b8cae;
@@ -31,7 +31,7 @@ body {
     min-height: 100vh;
 }
 
-/* 导航栏样式 */
+/* 導航欄樣式 */
 .navbar {
     display: flex;
     justify-content: space-between;
@@ -72,7 +72,7 @@ body {
     color: #3867d6;
 }
 
-/* 主内容区域样式 */
+/* 主內容區域樣式 */
 .main-content {
     flex: 1;
     padding: 2rem;
@@ -89,7 +89,7 @@ body {
     display: block;
 }
 
-/* 欢迎页面样式 */
+/* 歡迎頁面樣式 */
 .welcome-container {
     text-align: center;
     padding: 3rem 1rem;
@@ -107,7 +107,7 @@ body {
     color: #666;
 }
 
-/* 按钮样式 */
+/* 按鈕樣式 */
 .primary-btn {
     background-color: #3867d6;
     color: white;
@@ -174,7 +174,7 @@ body {
     background-color: #e9ecef;
 }
 
-/* 地点选择页面样式 */
+/* 地點選擇頁面樣式 */
 #location-section h2 {
     margin-bottom: 1.5rem;
     color: var(--primary-color);
@@ -250,7 +250,7 @@ body {
     margin-right: 1rem;
 }
 
-/* 风格选择页面样式 */
+/* 風格選擇頁面樣式 */
 #style-section h2 {
     margin-bottom: 1.5rem;
     color: var(--primary-color);
@@ -306,7 +306,7 @@ body {
     margin-right: 1rem;
 }
 
-/* 聊天界面样式 */
+/* 聊天界面樣式 */
 .chat-header {
     display: flex;
     align-items: center;
@@ -403,7 +403,7 @@ body {
     color: #e74c3c;
 }
 
-/* 总结页面样式 */
+/* 總結頁面樣式 */
 #summary-section h2 {
     margin-bottom: 1.5rem;
     color: var(--primary-color);
@@ -456,7 +456,7 @@ body {
     gap: 10px;
 }
 
-/* 底部导航样式 */
+/* 底部導航樣式 */
 .footer {
     text-align: center;
     padding: 1rem;
@@ -464,7 +464,7 @@ body {
     border-top: 1px solid #ddd;
 }
 
-/* 响应式设计 */
+/* 響應式設計 */
 @media (max-width: 768px) {
     .style-card {
         width: 100%;
