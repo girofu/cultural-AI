@@ -54,10 +54,14 @@ function startServer(port) {
       console.log("==============================================");
       console.log(`服務器運行在端口 ${port}`);
       console.log(`如果在本地運行，請訪問: http://localhost:${port}`);
+      console.log(`RAG知識庫演示頁面: http://localhost:${port}/rag-demo.html`);
       console.log("==============================================");
 
       if (process.env.HOST) {
         console.log(`或是訪問: ${process.env.HOST}:${port}`);
+        console.log(
+          `RAG知識庫演示頁面: ${process.env.HOST}:${port}/rag-demo.html`
+        );
       }
     })
     .on("error", (err) => {
