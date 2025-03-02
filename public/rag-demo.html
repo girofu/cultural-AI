@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RAG知識庫問答系統 - 示範</title>
+    <style>
+        body {
+            font-family: 'Microsoft JhengHei', Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            gap: 20px;
+        }
+        .left-panel {
+            flex: 1;
+            background: white;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .right-panel {
+            flex: 1;
+            background: white;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        h1, h2 {
+            color: #2c3e50;
+        }
+        input, textarea, button {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            cursor: pointer;
+            font-weight: bold;
+            border: none;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .message {
+            margin-bottom: 15px;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        .user-message {
+            background-color: #e1f5fe;
+            margin-left: 20px;
+        }
+        .ai-message {
+            background-color: #f1f1f1;
+            margin-right: 20px;
+        }
+        #chatHistory {
+            max-height: 400px;
+            overflow-y: auto;
+            margin-bottom: 20px;
+            padding: 10px;
+            border: 1px solid #eee;
+            border-radius: 5px;
+        }
+        .sources {
+            font-size: 0.85em;
+            margin-top: 8px;
+            padding-top: 8px;
+            border-top: 1px dashed #ccc;
+        }
+        .source-item {
+            margin-bottom: 5px;
+            padding-left: 10px;
+            border-left: 3px solid #4CAF50;
+        }
+        .document-form {
+            margin-bottom: 30px;
+        }
+        #documentsList {
+            max-height: 200px;
+            overflow-y: auto;
+            margin-bottom: 20px;
+        }
+        .document-item {
+            padding: 10px;
+            border-bottom: 1px solid #eee;
+            cursor: pointer;
+        }
+        .document-item:hover {
+            background-color: #f9f9f9;
+        }
+        .loading {
+            text-align: center;
+            padding: 20px;
+            font-style: italic;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <h1>RAG知識庫問答系統</h1>
+    <p>您可以通過此界面添加文檔到知識庫，然後基於這些知識提問。</p>
+    
+    <div class="container">
+        <div class="left-panel">
+            <h2>知識庫管理</h2>
+            
+            <div class="document-form">
+                <h3>添加新文檔</h3>
+                <input type="text" id="docTitle" placeholder="文檔標題" required>
+                <textarea id="docContent" rows="10" placeholder="文檔內容" required></textarea>
+                <input type="text" id="docCategory" placeholder="分類 (可選)">
+                <input type="text" id="docTags" placeholder="標籤，用逗號分隔 (可選)">
+                <button id="addDocBtn">添加文檔</button>
+            </div>
+            
+            <h3>文檔列表</h3>
+            <button id="refreshDocsBtn">刷新文檔列表</button>
+            <div id="documentsList">
+                <div class="loading">加載中...</div>
+            </div>
+        </div>
+        
+        <div class="right-panel">
+            <h2>問答系統</h2>
+            
+            <div id="chatHistory">
+                <div class="message ai-message">
+                    您好！我是基於RAG（檢索增強生成）的問答助手。請問有什麼我可以幫助您的嗎？
+                </div>
+            </div>
+            
+            <div>
+                <input type="text" id="userInput" placeholder="請輸入您的問題...">
+                <button id="askBtn">提問</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 文檔管理相關函數
+        async function addDocument() {
+            const title = document.getElementById('docTitle').value.trim();
+            const content = document.getElementById('docContent').value.trim();
+            const category = document.getElementById('docCategory').value.trim();
+            const tagsInput = document.getElementById('docTags').value.trim();
+            
+            if (!title || !content) {
+                alert('標題和內容不能為空');
+                return;
+            }
+            
+            const tags = tagsInput ? tagsInput.split(',').map(tag => tag.trim()) : [];
+            
+            try {
+                const response = await fetch('/api/documents', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        title,
+                        content,
+                        category: category || 'general',
+                        tags
+                    })
+                });
+                
+                const data = await response.json();
+                
+                if (response.ok) {
+                    alert('文檔添加成功！' + (data.warning ? '\n警告: ' + data.warning : ''));
+                    document.getElementById('docTitle').value = '';
+                    document.getElementById('docContent').value = '';
+                    document.getElementById('docCategory').value = '';
+                    document.getElementById('docTags').value = '';
+                    fetchDocuments();
+                } else {
+                    alert('添加文檔失敗: ' + data.message);
+                }
+            } catch (error) {
+                console.error('添加文檔時出錯:', error);
+                alert('添加文檔時出錯: ' + error.message);
+            }
+        }
+        
+        async function fetchDocuments() {
+            const documentsList = document.getElementById('documentsList');
+            documentsList.innerHTML = '<div class="loading">加載中...</div>';
+            
+            try {
+                const response = await fetch('/api/documents');
+                const documents = await response.json();
+                
+                if (documents.length === 0) {
+                    documentsList.innerHTML = '<p>還沒有添加任何文檔。</p>';
+                    return;
+                }
+                
+                documentsList.innerHTML = '';
+                documents.forEach(doc => {
+                    const docItem = document.createElement('div');
+                    docItem.className = 'document-item';
+                    docItem.innerHTML = `
+                        <strong>${doc.title}</strong>
+                        <p>${doc.content.substring(0, 100)}...</p>
+                        <small>分類: ${doc.category} | 標籤: ${doc.tags.join(', ') || '無'} | 添加於: ${new Date(doc.createdAt).toLocaleString()}</small>
+                    `;
+                    documentsList.appendChild(docItem);
+                });
+            } catch (error) {
+                console.error('獲取文檔列表失敗:', error);
+                documentsList.innerHTML = '<p>獲取文檔列表失敗: ' + error.message + '</p>';
+            }
+        }
+        
+        // 聊天相關函數
+        async function askQuestion() {
+            const userInput = document.getElementById('userInput');
+            const question = userInput.value.trim();
+            
+            if (!question) return;
+            
+            // 添加用戶問題到聊天歷史
+            addMessageToChat('user', question);
+            userInput.value = '';
+            
+            // 顯示加載中
+            const loadingId = addMessageToChat('ai', '正在思考中...');
+            
+            try {
+                const response = await fetch('/api/rag-chat', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        query: question
+                    })
+                });
+                
+                const data = await response.json();
+                
+                // 移除加載訊息
+                document.getElementById(loadingId).remove();
+                
+                // 添加AI回覆
+                let aiContent = data.response || '抱歉，我無法回答這個問題。';
+                
+                // 添加來源信息
+                if (data.sources && data.sources.length > 0) {
+                    aiContent += '<div class="sources"><strong>參考資料：</strong>';
+                    data.sources.forEach(source => {
+                        aiContent += `
+                            <div class="source-item">
+                                <strong>${source.title}</strong>: ${source.snippet}
+                            </div>
+                        `;
+                    });
+                    aiContent += '</div>';
+                }
+                
+                addMessageToChat('ai', aiContent);
+            } catch (error) {
+                console.error('發送問題時出錯:', error);
+                // 移除加載訊息
+                document.getElementById(loadingId).remove();
+                // 添加錯誤訊息
+                addMessageToChat('ai', '抱歉，服務器發生錯誤: ' + error.message);
+            }
+        }
+        
+        function addMessageToChat(role, content) {
+            const chatHistory = document.getElementById('chatHistory');
+            const messageDiv = document.createElement('div');
+            messageDiv.id = 'msg-' + Date.now();
+            messageDiv.className = 'message ' + (role === 'user' ? 'user-message' : 'ai-message');
+            messageDiv.innerHTML = content;
+            chatHistory.appendChild(messageDiv);
+            chatHistory.scrollTop = chatHistory.scrollHeight;
+            return messageDiv.id;
+        }
+        
+        // 頁面加載時初始化
+        document.addEventListener('DOMContentLoaded', () => {
+            // 添加事件監聽器
+            document.getElementById('addDocBtn').addEventListener('click', addDocument);
+            document.getElementById('refreshDocsBtn').addEventListener('click', fetchDocuments);
+            document.getElementById('askBtn').addEventListener('click', askQuestion);
+            
+            // 輸入框按下回車提交
+            document.getElementById('userInput').addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') askQuestion();
+            });
+            
+            // 加載文檔列表
+            fetchDocuments();
+        });
+    </script>
+</body>
+</html> 
