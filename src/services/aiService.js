@@ -73,7 +73,7 @@ async function generateChatResponse(location, style, userMessage, chatHistory) {
 
     // 限制聊天歷史以避免過長上下文，只保留最近的兩次對話
     if (chatHistory && chatHistory.length > 0) {
-      const recentHistory = chatHistory.slice(-4); // 只保留最近2輪對話(4條消息)
+      const recentHistory = chatHistory.slice(-10); // 只保留最近2輪對話(4條消息)
       recentHistory.forEach((entry) => {
         const role = entry.role === "ai" ? "assistant" : entry.role;
         messages.push({
